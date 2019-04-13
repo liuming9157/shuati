@@ -1,0 +1,35 @@
+<view class="page">
+   <view class='headName'>
+    <image class='head' src='{{userInfo.avatarUrl}}'></image>
+    <view class='name'>{{userInfo.nickName}}</view>
+  </view>
+
+  <view class='grayLine'></view>
+
+  <view class='testHistory' bindtap='testHistory'>
+    <image class='icon' src='../../images/1-01.png'></image>
+    <view class='text'>测试历史</view>
+  </view>
+
+  <view class='grayLine1'></view>
+
+  <view class='personalInformation' bindtap='personalInformation'>
+    <image class='icon'  src='../../images/1-02.png'></image>
+    <view class='text'>个人信息</view>
+  </view>
+
+  <view class='grayLine2'></view>
+
+  <view class='personalInformation'>
+    <image class='icon'  src='../../images/1-03.png'></image>
+    <view class='text'>问题反馈请添加QQ群：362066974</view>
+  </view>
+<!--
+<button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+<view wx:else>请升级微信版本</view>
+-->
+</view>
+<view class='bottom'>
+<view class='text'>©明志教育 客服电话:</view>
+<view class='text phonenumber' bindtap='phonecall'>010-86466630</view>
+</view>
