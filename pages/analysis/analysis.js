@@ -9,7 +9,7 @@ Page({
     nowQuestion:[],
     correctAnswer:'',
     userAnswer:'',
-    loading:false
+    loading:true
     
   },  
 
@@ -29,10 +29,10 @@ Page({
     queryHistory.find({
       success: function (results) {
         var singleQuestionList = results[0].attributes.singleQuestionList;
-       // var multiQuestionList = results[0].attributes.multiQuestionList;
+        var multiQuestionList = results[0].attributes.multiQuestionList;
         that.setData({
           singleQuestionList: singleQuestionList,
-         // multiQuestionList: multiQuestionList,
+          multiQuestionList: multiQuestionList,
           choseType: choseType
         });
         if (choseType == 'single') {
@@ -114,10 +114,20 @@ Page({
 
 
   afterQuestion: function () {
-    if (that.data.choseType == 'single' ){
+    if (that.data.choseType == 'single' && that.data.nowQuestion.number != 20) {
       that.aftersingleQuestion();
     }
-    
+    else if (that.data.choseType == 'single' && that.data.nowQuestion.number == 20){
+      var questionList = that.data.multiQuestionList;
+      that.setData({
+        nowQuestion: questionList[0],
+        choseType: 'multi'
+      })
+      that.afterMultiQuestion();
+    }
+    else if (that.data.choseType == 'multi') {
+      that.afterMultiQuestion();
+    }
   },
 
   aftersingleQuestion:function(){

@@ -17,6 +17,10 @@
   </view> 
 </view>
 
+   <view class="loading_box" wx:if="{{loading}}">
+      <view class="loading3 loading3_1"></view>
+      <view class="loading3 loading3_2"></view>
+      <view class="loading3 loading3_3"></view>
+    </view>  
 
-<view class='foot'>明志教育，专业提供托福/SAT/SSAT/ACT教学培训</view>
 

@@ -6,7 +6,7 @@
       <text>单项选择题</text>
     </view>
     <view class='content'>
-      <text>本题库共存放了1000道题，每次刷题随机抽取20道。每小题只有1个正确答案，请从每题的备选答案中选出一个你认为正确的答案。</text>
+      <text>本大题共20小题，每小题1分，共20分。每小题只有1个正确答案，请从每题的备选答案中选出一个你认为正确的答案。</text>
     </view>
   </view>
 
@@ -23,14 +23,14 @@
     <view class='right'>
       <image class='rightIcon' src='../../images/1-02.png'></image>
     </view>
-  </view> 
+  </view> -->
 
   <view class='bottom'>
     <view class='middle' bindtap='answerCard'>
       <image class='leftIcon' src='../../images/1-01.png'></image>
     </view>
   </view>
--->
+  
 
 
 </view>

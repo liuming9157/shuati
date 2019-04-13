@@ -20,7 +20,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#1bd0bd",
-    "navigationBarTitleText": "明志刷题",
+    "navigationBarTitleText": "选择题库",
     "navigationBarTextStyle":"white"
   },
  "tabBar": {
@@ -33,7 +33,12 @@
       "selectedIconPath": "images/6-01.png",
       "pagePath": "pages/choiceMain/choiceMain"
     },
-    
+    {
+      "text": "排名",
+      "iconPath": "images/rank.png",
+      "selectedIconPath": "images/rankClick.png",
+      "pagePath": "pages/ranking/ranking"
+    },
     {
       "text": "我的",
       "iconPath": "images/3-01.png",

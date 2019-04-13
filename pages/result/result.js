@@ -8,7 +8,7 @@ Page({
     choseQuestionBank:'',
     singleQuestionList: [],
     multiQuestionList: [],
-    loading:false,
+    loading:true,
     defeatNumber: 0,
     averageScore: 0,
     correctRate: 0
@@ -25,35 +25,34 @@ Page({
     var currentUser = Bmob.User.current();
     var currentUserId = currentUser.id;
     var getSingleQuestionList = getApp().globalData.singleChoiceAnswerNow;
-//    var getMultiQuestionList = getApp().globalData.multiChoiceAnswerNow;
+    var getMultiQuestionList = getApp().globalData.multiChoiceAnswerNow;
     console.log(getSingleQuestionList);
-   for (var i = 0; i < 20; i++) {
+    for (var i = 0; i < 20; i++) {
       getSingleQuestionList[i].attributes.number = i + 1;
     }
-/**for (var j = 0; j < 20; j++) {
+    for (var j = 0; j < 20; j++) {
       getMultiQuestionList[j].attributes.number = j + 1;
-    }**/
+    }
    
     var score = getApp().globalData.score;
     that.setData({
       score: score,
       singleQuestionList: getSingleQuestionList,
-      //multiQuestionList: getMultiQuestionList,
+      multiQuestionList: getMultiQuestionList,
     });
     console.log(getSingleQuestionList);
     var saveSingleQuestionList=new Array();
-    //var saveMultiQuestionList = new Array();
+    var saveMultiQuestionList = new Array();
     for(var i=0;i<20;i++){
       saveSingleQuestionList[i] = getSingleQuestionList[i].attributes;
-      //saveMultiQuestionList[i] = getMultiQuestionList[i].attributes;
+      saveMultiQuestionList[i] = getMultiQuestionList[i].attributes;
     }
-    //console.log(saveMultiQuestionList)
+    console.log(saveMultiQuestionList)
 
-   that.deleteHistory(currentUserId, choseQuestionBank, currentUserId, score, saveSingleQuestionList)
-   
+    that.deleteHistory(currentUserId, choseQuestionBank, currentUserId, score, saveSingleQuestionList, saveMultiQuestionList)
   },
 
-  deleteHistory: function (userId, choseQuestionBank, currentUserId, score, saveSingleQuestionList){
+  deleteHistory: function (userId, choseQuestionBank, currentUserId, score, saveSingleQuestionList, saveMultiQuestionList){
     var History = Bmob.Object.extend("history");
     var queryHistory = new Bmob.Query(History);
     queryHistory.equalTo("user", userId);
@@ -62,7 +61,7 @@ Page({
       return Bmob.Object.destroyAll(todos);
     }).then(function (todos) {
       console.log(todos);
-      that.inputHistory(currentUserId, score, saveSingleQuestionList, choseQuestionBank);
+      that.inputHistory(currentUserId, score, saveSingleQuestionList, saveMultiQuestionList, choseQuestionBank);
       that.saveQBAttributes();
       that.getHistory();
       that.getDefeatNumber();
@@ -70,8 +69,8 @@ Page({
       // 异常处理
     });
   },
-  
-  inputHistory: function (currentUserId, score,       getSingleQuestionList,  choseQuestionBank){
+
+  inputHistory: function (userId, score, getSingleQuestionList, getMultiQuestionList, choseQuestionBank){
 
     var User = Bmob.Object.extend("_User");
     var queryUser = new Bmob.Query(User);
@@ -79,36 +78,31 @@ Page({
     var currentUserId = currentUser.id;
     queryUser.get(currentUserId, {
       success: function (result) {
-             console.log("查询成功"+currentUserId)
+
         var university = result.get("university");
         var realName = result.get("realName");
         var userPic = result.get("userPic");
-         
-        var History = Bmob.Object.extend("history");
-        var history = new History();
-        history.set("user", currentUserId);
-        history.set("university", university);
-        history.set("realName", realName);
-        history.set("userPic", userPic);
-        history.set("likeList", []);
-        history.set("score", score);
-        //History.set("likeNumber", 0);
-        history.set("singleQuestionList", getSingleQuestionList);
-        // History.set("multiQuestionList", getMultiQuestionList);
-        history.set("choseQuestionBank", choseQuestionBank);
-        history.save(null, {
-          success: function (result) {
-            //result.save();
-            console.log("储存成功")
-          },
-          error: function (object, error) {
-            console.log("添加失败"+error.code+error.message)}
 
+        var History = Bmob.Object.extend("history");
+        var History = new History();
+        History.set("user", userId);
+        History.set("university", university);
+        History.set("realName", realName);
+        History.set("userPic", userPic);
+        History.set("likeList", []);
+        History.set("score", score);
+        History.set("likeNumber", 0);
+        History.set("singleQuestionList", getSingleQuestionList);
+        History.set("multiQuestionList", getMultiQuestionList);
+        History.set("choseQuestionBank", choseQuestionBank);
+        History.save(null, {
+          success: function (result) {
+            result.save();
+          }
         })
-          
+
       },
       error: function (object, error) {
-        console.log("添加失败")
         // 查询失败
       }
     });
@@ -173,7 +167,7 @@ Page({
     var choseQuestionBank = that.data.choseQuestionBank;
     var QBAttributes = Bmob.Object.extend("QBAttributes");
     var queryQBAttributes = new Bmob.Query(QBAttributes);
-    if (choseQuestionBank =='SAT1数学'){
+    if (choseQuestionBank =='大学计算机期末考试题库'){
       queryQBAttributes.get('6o5I3334', {
         success: function (result) {
           var peopleNumber = result.attributes.PeopleNumber + 1;

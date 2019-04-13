@@ -54,11 +54,8 @@
    <view class='answer'>
     <view class='answerTitle'>答案</view>
     <view class='answerContent'>正确答案<text style='color:#1bd0bd'>{{correctAnswer}}</text>，您的答案<text style='color:#1bd0bd'>{{userAnswer}}</text></view>
-    
-   <!--
     <view class='answerTitle'>解析</view>
      <view class='answerContent'>{{nowQuestion.analysis}}</view>
-     -->
    </view>
    <view style='height:150rpx;  clear: both;'></view>
 
@@ -66,15 +63,11 @@
     <view class='bottomLeft'>
       <view class='frontQuestion'  bindtap='frontQuestion'>←</view>
     </view>
-    <!--
     <view class='middle' bindtap='answerCard'>
       <image class='middleIcon' src='../../images/1-01.png'></image>
     </view>
-    -->
     <view class='bottomRight'>
         <view class='lastQuestion'bindtap='afterQuestion'>→</view>
       </view>
-      
   </view>
-  
 </view>

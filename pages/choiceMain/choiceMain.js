@@ -4,37 +4,42 @@ Page({
   data: { 
     choseQuestionBank:"点击选择",
 
-    array: ['SAT1数学', 'SAT2数学', 'ACT数学', 'SSAT单词'],
+    array: ['大学计算机期末考试题库', '计算机二级office题库', '毛概期末考试题库', '中国近代史期末考试题库', '马克思原理期末考试题库','形式与政策'],
 
 
     objectArray: [
       {
         id: 0,
-        name: 'SAT1数学'
+        name: '大学计算机期末考试题库'
       },
       {
         id: 1,
-        name: 'SAT2数学'
+        name: '计算机二级office题库'
       },
       {
         id: 2,
-        name: 'ACT数学'
+        name: '毛概期末考试题库'
       },
       {
         id: 3,
-        name: 'SSAT单词'
+        name: '中国近代史期末考试题库'
+      },
+      {
+        id: 4,
+        name: '马克思原理期末考试题库'
+      },
+      {
+        id: 5,
+        name: '形式与政策'
       }
-      
     ],
     index: 0,
-    loading: false,
-    currentUserId:'',
-   
+    loading: true,
+    currentUserId:''
   },
 
   onLoad: function () {
     that = this;
-    
   },
 
   onShow: function () {
@@ -58,14 +63,14 @@ Page({
       success: function (result) {
         var register = result.get("register");
         console.log(register)
-       if (register==true){
+        if (register==true){
           var choseQuestionBank = that.data.choseQuestionBank;
           if (choseQuestionBank != "点击选择") {
             getApp().globalData.choseQuestionBank = choseQuestionBank;
             getApp().globalData.score = 0;
 
             wx.navigateTo({
-              url: '/pages/singleChoiceExplain/singleChoiceExplain'
+              url: '../singleChoiceExplain/singleChoiceExplain'
             });
           }
           else if (choseQuestionBank == "点击选择") {
@@ -75,11 +80,11 @@ Page({
               duration: 2000
             })
           }
-       }
+        }
         else{
           wx.showModal({
             title: '尚未完善信息',
-            content: '完善信息后可以保存做题记录。请放心填写，您的隐私绝不会被泄露',
+            content: '请放心填写，您的隐私绝不会被泄露',
             confirmText: '立即注册',
             confirmColor: '#1bd0bd',
             showCancel:false,
@@ -108,7 +113,7 @@ Page({
       console.log(res.target)
     }
     return {
-      title: '明志刷题',
+      title: '大学考试题库',
       path: '/pages/choiceMain/choiceMain',
       success: function (res) {
         // 转发成功
@@ -117,6 +122,6 @@ Page({
         // 转发失败
       }
     }
-  },
+  }
  
 })

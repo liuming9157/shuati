@@ -4,8 +4,8 @@
       <view class="loading3 loading3_2"></view>
       <view class="loading3 loading3_3"></view>
     </view>
-  <view class='grade'><text style='font-size:87rpx;'>{{score}}</text> /20分</view>
-<!--删掉全站排名
+  <view class='grade'><text style='font-size:87rpx;'>{{score}}</text> /60分</view>
+
    <view class='dataAnalysis'>
     <view class='dataAnalysisLeft'>
       <view class='content'>
@@ -26,7 +26,7 @@
       </view>
     </view>
   </view> 
--->
+
   <view class='grayLine'></view>
 
 <view class='title'> 
@@ -41,7 +41,7 @@
   </view>
 
   <view style='height:20rpx;  clear: both;'></view>
-<!--这一段删掉
+
   <view class='title'>
       <text style='color:#1bd0db;font-size: 50rpx;margin-right:15rpx;'>|</text>
       <text>多项选择题</text>
@@ -53,21 +53,19 @@
       <view class='singleChoiceItemError' wx:if="{{item.answerResult=='error'}}">{{item.number}}</view>
       <view class='singleChoiceItemBlank' wx:if="{{item.answerResult==null||item.answerResult=='blank'}}">{{item.number}}</view>
     </view>
--->
+
 
   <view style='clear: both;'></view>
 
    <view style='height:150rpx;  clear: both;'></view>
 
   <view class='bottom'>
-    <!--去掉解析
     <view class='left'>
       <view class='leftText' bindtap='allAnalysis'>查看全部解析</view>
     </view>
-    -->
-   
+    <view class='right'>
       <view class='rightText' bindtap='returnMainPage'>返回首页</view>
-   
+    </view>
   </view>
 
 </view>

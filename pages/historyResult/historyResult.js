@@ -8,7 +8,7 @@ Page({
     choseQuestionBank:'',
     singleQuestionList: [],
     multiQuestionList: [],
-    loading:false,
+    loading:true,
     defeatNumber:0,
     averageScore:0,
     correctRate:0
@@ -25,23 +25,23 @@ Page({
     var currentUser = Bmob.User.current();
     var currentUserId = currentUser.id;
     var getSingleQuestionList = getApp().globalData.singleChoiceAnswerNow;
-   // var getMultiQuestionList = getApp().globalData.multiChoiceAnswerNow;
+    var getMultiQuestionList = getApp().globalData.multiChoiceAnswerNow;
     for (var i = 0; i < 20; i++) {
       getSingleQuestionList[i].number = i + 1;
     }
-   /* for (var j = 0; j < 20; j++) {
+    for (var j = 0; j < 20; j++) {
       getMultiQuestionList[j].number = j + 1;
     }
-   */
+   
     var score = getApp().globalData.score;
    
     that.getCorrectRate();
     that.getDefeatNumber();
-    //that.getAverageScore();
+    that.getAverageScore();
     that.setData({
       score: score,
       singleQuestionList: getSingleQuestionList,
-    //  multiQuestionList: getMultiQuestionList,
+      multiQuestionList: getMultiQuestionList,
       loading:false
     });
 
@@ -54,8 +54,8 @@ Page({
     var History = Bmob.Object.extend("history");
     var queryHistory = new Bmob.Query(History);
     var defeatNumber=0;
-    if (choseQuestionBank == 'SAT1数学') {
-      queryHistory.equalTo("choseQuestionBank", "SAT1数学");
+    if (choseQuestionBank == '大学计算机期末考试题库') {
+      queryHistory.equalTo("choseQuestionBank", "大学计算机期末考试题库");
       queryHistory.find({
         success: function (results) {
           for (var i = 0; i < results.length; i++) {
@@ -73,8 +73,8 @@ Page({
         }
       });
     }
-    else if (choseQuestionBank == 'SAT2数学') {
-      queryHistory.equalTo("choseQuestionBank", "SAT2数学");
+    else if (choseQuestionBank == '计算机二级office题库') {
+      queryHistory.equalTo("choseQuestionBank", "计算机二级office题库");
       queryHistory.find({
         success: function (results) {
           for (var i = 0; i < results.length; i++) {
@@ -92,9 +92,8 @@ Page({
         }
       });
     }
-    
-    else if (choseQuestionBank == 'SAT2数学') {
-      queryHistory.equalTo("choseQuestionBank", "SAT2数学");
+    else if (choseQuestionBank == '毛概期末考试题库') {
+      queryHistory.equalTo("choseQuestionBank", "毛概期末考试题库");
       queryHistory.find({
         success: function (results) {
           for (var i = 0; i < results.length; i++) {
@@ -112,8 +111,8 @@ Page({
         }
       });
     }
-    else if (choseQuestionBank == 'ACT数学') {
-      queryHistory.equalTo("choseQuestionBank", "ACT数学");
+    else if (choseQuestionBank == '中国近代史期末考试题库') {
+      queryHistory.equalTo("choseQuestionBank", "中国近代史期末考试题库");
       queryHistory.find({
         success: function (results) {
           for (var i = 0; i < results.length; i++) {
@@ -131,8 +130,27 @@ Page({
         }
       });
     }
-    else if (choseQuestionBank == 'SSAT单词') {
-      queryHistory.equalTo("choseQuestionBank", "SSAT单词");
+    else if (choseQuestionBank == '马克思原理期末考试题库') {
+      queryHistory.equalTo("choseQuestionBank", "马克思原理期末考试题库");
+      queryHistory.find({
+        success: function (results) {
+          for (var i = 0; i < results.length; i++) {
+            var score = results[i].attributes.score;
+            if (that.data.score > score) {
+              defeatNumber++;
+            }
+          }
+          that.setData({
+            defeatNumber: defeatNumber,
+          });
+        },
+        error: function (error) {
+          console.log("查询失败: " + error.code + " " + error.message);
+        }
+      });
+    }
+    else if (choseQuestionBank == '形式与政策') {
+      queryHistory.equalTo("choseQuestionBank", "形式与政策");
       queryHistory.find({
         success: function (results) {
           for (var i = 0; i < results.length; i++) {
@@ -152,7 +170,7 @@ Page({
     }
   },
 
-  /** 
+  
   getAverageScore:function(){
     var choseQuestionBank = that.data.choseQuestionBank;
     var QBAttributes = Bmob.Object.extend("QBAttributes");
@@ -242,10 +260,9 @@ Page({
       });
     }
   },
-  **/
 
   getCorrectRate:function(){
-    var correctRate=that.data.score/20*100;
+    var correctRate=that.data.score/60*100;
     var newCorrectRate = correctRate.toFixed(1);
     console.log(that.data.score)
     that.setData({

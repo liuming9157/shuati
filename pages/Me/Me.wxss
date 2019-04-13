@@ -62,14 +62,3 @@ page{
   width: 100%;
   background-color: #e1e3e3;
 }
-.bottom{
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  width: 100%
-}
-.phonenumber{
-  color: blue
-}

@@ -4,24 +4,12 @@ var that;
 Page({
 
   data: {
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    userInfo: {},
+    currentUserId:null
   },
 
  
   onLoad: function () {
-    // 查看是否授权
-    wx.getSetting({
-      success: function (res) {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
-            success: function (res) {
-              console.log(res.userInfo)
-            }
-          })
-        }
-      }
-    })
     that = this;
     var currentUser = Bmob.User.current();
     var currentUserId = currentUser.id;
@@ -34,9 +22,7 @@ Page({
       })
     })
   },
-  bindGetUserInfo: function (e) {
-    console.log(e.detail.userInfo)
-  },
+
   onShow: function () {
   
   },
@@ -103,11 +89,6 @@ Page({
         // 转发失败
       }
     }
-  },
-  phonecall:function(){
-    wx.makePhoneCall({
-      phoneNumber: '01086466630',
-    })
   }
  
 })

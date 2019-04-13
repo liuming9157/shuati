@@ -100,9 +100,9 @@
 
    */
     Bmob._initialize = function (applicationId, applicationKey, masterKey) {
-      Bmob.applicationId = applicationId;
-      Bmob.applicationKey = applicationKey;
-      Bmob.masterKey = masterKey;
+        Bmob.applicationId = applicationId;
+        Bmob.applicationKey = applicationKey;
+        Bmob.masterKey = masterKey;
         Bmob._useMasterKey = true;
         Bmob.serverURL = "https://" + applicationId + ".bmobcloud.com";
     };

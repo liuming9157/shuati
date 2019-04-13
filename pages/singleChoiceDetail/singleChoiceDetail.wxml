@@ -52,13 +52,13 @@
     <view class='right'>
       <image class='rightIcon' src='../../images/1-02.png'></image>
     </view>
-  </view> 
+  </view> -->
 
   <view class='bottom'>
     <view class='middle' bindtap='answerCard'>
       <image class='leftIcon' src='../../images/1-01.png'></image>
     </view>
-  </view>-->
+  </view>
 
 
 </view>

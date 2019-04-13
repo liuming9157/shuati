@@ -124,7 +124,7 @@ page{
   width: 100%;
   position: fixed;
   bottom: 0;
-  height: 200rpx;
+  height: 100rpx;
   border-top: 1px solid #c9c9d8;
     background-color: #ffffff;
 }
@@ -173,7 +173,7 @@ page{
   align-items:center;
   color: #ffffff;
   width: 90rpx;
-  height: 80rpx;
+  height: 40rpx;
   background-color: #1bd0bd;
   border-radius: 15rpx;
 } 
@@ -185,7 +185,7 @@ page{
   align-items:center;
   color: #ffffff;
   width: 90rpx;
-  height: 80rpx;
+  height: 40rpx;
   background-color: #1bd0bd;
   border-radius: 15rpx;
 }

@@ -13,8 +13,8 @@ Page({
     choseCharacter:'',
     score:0,
     // blank:"blank",
-   // newMultiQuestionList:[],
-    loading:false
+    newMultiQuestionList:[],
+    loading:true
   },
 
   
@@ -30,21 +30,24 @@ Page({
     var loadQuestionBank;
     var questionList=new Array();
     var multiQuestionList = new Array();
-    if (choseQuestionBank =="SAT1数学"){
+    if (choseQuestionBank =="大学计算机期末考试题库"){
       loadQuestionBank="QB1";
     }
-    
-    else if (choseQuestionBank =='SAT2数学') {
+    else if (choseQuestionBank == "计算机二级office题库"){
       loadQuestionBank = "QB2";
     }
-    else if (choseQuestionBank == "ACT数学") {
+    else if (choseQuestionBank == "毛概期末考试题库") {
       loadQuestionBank = "QB3";
     }
-    else if (choseQuestionBank == "SSAT单词") {
+    else if (choseQuestionBank == "中国近代史期末考试题库") {
       loadQuestionBank = "QB4";
     }
-    
-    
+    else if (choseQuestionBank == "马克思原理期末考试题库") {
+      loadQuestionBank = "QB5";
+    }
+    else if (choseQuestionBank == "形式与政策") {
+      loadQuestionBank = "QB6";
+    }
     var QuestionBank = Bmob.Object.extend(loadQuestionBank);
     var querySingleQuestionBank = new Bmob.Query(QuestionBank);
     querySingleQuestionBank.equalTo("type", "SC");
@@ -54,7 +57,6 @@ Page({
         for (var i = 0; i < results.length; i++) {
           questionList.push(results[i])
           questionList[i].attributes.userChose = "空";
-         
         }
         var newSingleQuestionList = that.getRandomSingleChoice(questionList,20)
         that.setData({
@@ -67,17 +69,16 @@ Page({
         console.log("查询失败: " + error.code + " " + error.message);
       }
     });
-    /**var queryMultiQuestionBank = new Bmob.Query(QuestionBank);
+    var queryMultiQuestionBank = new Bmob.Query(QuestionBank);
     queryMultiQuestionBank.equalTo("type", "MC");
     queryMultiQuestionBank.find({
       success: function (results) {
         console.log("共查询到 " + results.length + " 条记录");
         for (var i = 0; i < results.length; i++) {
           multiQuestionList.push(results[i])
-        
         }
         var newMultiQuestionList = that.getRandomSingleChoice(multiQuestionList, 20)
-        for (i = 0; i < 20; i++) {
+        for(i=0;i<20;i++){
           newMultiQuestionList[i].attributes.userChose = "空";
         }
         that.setData({
@@ -88,7 +89,7 @@ Page({
       error: function (error) {
         console.log("查询失败: " + error.code + " " + error.message);
       }
-    });**/
+    });
     
   },
 
@@ -387,10 +388,10 @@ Page({
 
   overSingleChoice:function(questionNumber){
     getApp().globalData.singleChoiceAnswerNow = that.data.questionList;
-   // getApp().globalData.multiChoiceAnswerNow = that.data.newMultiQuestionList;
+    getApp().globalData.multiChoiceAnswerNow = that.data.newMultiQuestionList;
     if (questionNumber==19){
       wx.redirectTo({
-        url: '../result/result'
+        url: '../multiChoiceExplain/multiChoiceExplain'
       });
     }
   }

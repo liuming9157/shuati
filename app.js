@@ -1,5 +1,5 @@
 var Bmob = require('utils/bmob.js');
-Bmob.initialize("f69e63b3eeed91f22200912074f1e182", "b432035624d8c5f5e57441b5fe081336");
+Bmob.initialize("", "");
  
 App({
   onLaunch: function () {
@@ -35,7 +35,7 @@ App({
               
 
               //保存用户其他信息
-             wx.getUserInfo({
+              wx.getUserInfo({
                 success: function (result) {
 
                   var userInfo = result.userInfo;
